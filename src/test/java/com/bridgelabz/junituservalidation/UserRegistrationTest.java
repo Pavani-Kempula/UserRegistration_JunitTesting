@@ -5,6 +5,7 @@ import org.junit.Test;
 
 public class UserRegistrationTest {
     UserRegistration userRegistration = new UserRegistration();
+
     @Test
     public void givenFirstName_WhenFirstLatterUpperCase_ShouldReturnTrue() {
         boolean result = userRegistration.validateFirstName("Pavani");
