@@ -56,7 +56,7 @@ public class UserRegistrationTest {
 
     @Test
     public void givenEmailId_WhenProper_ShouldReturnTrue(){
-        boolean result = userRegistration.valudateEmailId("abc.syz@bl.co.in");
+        boolean result = userRegistration.validateEmailId("abc.syz@bl.co.in");
         Assert.assertTrue(result);
     }
 

@@ -15,7 +15,7 @@ public class UserRegistration {
     public boolean validateLastName(String lName){
         return patternChecker(lName, NAME_PATTERN);
     }
-    public boolean valudateEmailId(String emailId){
+    public boolean validateEmailId(String emailId){
         return patternChecker(emailId, EMAIL_PATTERN);
     }
     public boolean validateMobileNum(String mobileNum){
