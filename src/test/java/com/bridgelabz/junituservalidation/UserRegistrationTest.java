@@ -110,4 +110,11 @@ public class UserRegistrationTest {
         boolean result = userRegistration.validatePassword("mDkk%fDB");
         Assert.assertFalse(result);
     }
+
+    @Test
+    public void givenPassword_WhenHasExact1SpecialChar_ShouldReturnTrue() {
+        boolean result = userRegistration.validatePassword("mDkk%fD1");
+        Assert.assertTrue(result);
+    }
+
 }
