@@ -86,4 +86,10 @@ public class UserRegistrationTest {
         boolean result = userRegistration.validatePassword("nDj1k2*jf");
         Assert.assertTrue(result);
     }
+
+    @Test
+    public void givenPassword_WhenAtleast1UpperCase_ShouldReturnTrue() {
+        boolean result = userRegistration.validatePassword("3Rmdg*nK");
+        Assert.assertTrue(result);
+    }
 }
