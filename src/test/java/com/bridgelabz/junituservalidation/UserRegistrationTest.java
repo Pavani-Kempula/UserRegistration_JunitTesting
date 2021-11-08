@@ -89,8 +89,25 @@ public class UserRegistrationTest {
     }
 
     @Test
+    public void givenPassword_WhenHasLessChars_ShouldReturnFalse() {
+        boolean result = userRegistration.validatePassword("Kd1%f");
+        Assert.assertFalse(result);
+    }
+
+    @Test
     public void givenPassword_WhenAtleast1UpperCase_ShouldReturnTrue() {
         boolean result = userRegistration.validatePassword("3Rmdg*nK");
         Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenPassword_WhenAtleast1Number_ShouldReturnTrue() {
+        boolean result = userRegistration.validatePassword("Mas1bt&Bx");
+        Assert.assertTrue(result);
+    }
+    @Test
+    public void givenPassword_WhenNoNumeric_ShouldReturnFalse() {
+        boolean result = userRegistration.validatePassword("mDkk%fDB");
+        Assert.assertFalse(result);
     }
 }
