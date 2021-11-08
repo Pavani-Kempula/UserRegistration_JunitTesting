@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class UserRegistrationTest {
+
     UserRegistration userRegistration = new UserRegistration();
 
     @Test
