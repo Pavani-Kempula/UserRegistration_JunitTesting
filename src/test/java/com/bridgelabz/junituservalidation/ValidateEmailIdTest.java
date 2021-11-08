@@ -27,7 +27,6 @@ public class ValidateEmailIdTest {
         userRegistration= new UserRegistration();
     }
 
-
     @Parameterized.Parameters
     public static Collection emailIds_With_ExpectedResult(){
         return Arrays.asList(new Object[][]{
