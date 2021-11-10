@@ -1,40 +1,54 @@
 package com.bridgelabz.junituservalidation;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
-    private static final String NAME_PATTERN = "^[A-Z][a-z]{2,}";
-    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-z]{2,4})?$";
-    private static final String MOBILE_PATTERN = "^[0-9]{0,2}[ ][0-9]{10}";
-    private static final String PASSWORD_PATTERN = "(?=.*[A-Z]+)(?=.*[0-9]+).{8,}";
-
-    public boolean validateFirstName(String fName) throws UserResistrationException {
-        return patternChecker(fName, NAME_PATTERN);
+    // UserFieldPattern regex;
+    public boolean validateFirstName(String fName) {
+        UserRegistrationIFun userRegistrationIFun = (namePattern, input) -> Pattern.matches(UserFieldPattern.NAME_PATTERN.patterns, input);
+        boolean result = userRegistrationIFun.validate(UserFieldPattern.NAME_PATTERN.patterns, fName);
+        customeException(fName, result);
+        return result;
     }
-    public boolean validateLastName(String lName) throws UserResistrationException {
-        return patternChecker(lName, NAME_PATTERN);
+    public boolean validateLastName(String lName) {
+        UserRegistrationIFun userRegistrationIFun = (namePattern, input) -> Pattern.matches(UserFieldPattern.NAME_PATTERN.patterns, input);
+        boolean result = userRegistrationIFun.validate(UserFieldPattern.NAME_PATTERN.patterns, lName);
+        customeException(lName,result);
+        return result;
     }
-    public boolean validateEmailId(String emailId) throws UserResistrationException {
-        return patternChecker(emailId, EMAIL_PATTERN);
+    public boolean validateEmailId(String emailId) {
+        UserRegistrationIFun userRegistrationIFun = (emailPattern, input) -> Pattern.matches(UserFieldPattern.EMAIL_PATTERN.patterns, input);
+        boolean result = userRegistrationIFun.validate(UserFieldPattern.EMAIL_PATTERN.patterns,emailId);
+        customeException(emailId, result);
+        return result;
     }
-    public boolean validateMobileNum(String mobileNum) throws UserResistrationException {
-        return patternChecker(mobileNum, MOBILE_PATTERN);
+    public boolean validateMobileNum(String mobileNum) {
+        UserRegistrationIFun userRegistrationIFun = (mobileNoPattern, input) -> Pattern.matches(UserFieldPattern.MOBILE_PATTERN.patterns, input);
+        boolean result = userRegistrationIFun.validate(UserFieldPattern.MOBILE_PATTERN.patterns, mobileNum);
+        customeException(mobileNum, result);
+        return result;
     }
-    public boolean validatePassword(String password) throws UserResistrationException {
-        return patternChecker(password, PASSWORD_PATTERN);
+    public boolean validatePassword(String password) {
+        UserRegistrationIFun userRegistrationIFun = (passwordPattern, input) -> Pattern.matches(UserFieldPattern.PASSWORD_PATTERN.patterns, input);
+        boolean result = userRegistrationIFun.validate(UserFieldPattern.PASSWORD_PATTERN.patterns, password);
+        customeException(password, result);
+        return result;
     }
-    private boolean patternChecker(String input,String fieldPattern) throws UserResistrationException {
-        Pattern pattern = Pattern.compile(fieldPattern);
-        Matcher matcher = pattern.matcher(input);
+    public void customeException(String input, boolean result){
         try {
-            boolean result = matcher.matches();
-            if (!result)
-                throw new UserResistrationException(UserResistrationException.ExceptionType.ENTERED_INVALID, "Please give valid Entry");
-            return result;
-        }catch (NullPointerException exception){
-            throw new UserResistrationException(UserResistrationException.ExceptionType.ENTERED_NULL, "Entry Should be not null ");
-        }
+            if (result){
+                System.out.println("You Entered Valid String....");
+            }else if(input.isEmpty()){
+                throw new UserResistrationException(UserResistrationException.ExceptionType.ENTERED_NULL);
 
+            }
+            else {
+
+
+                throw new UserResistrationException(UserResistrationException.ExceptionType.ENTERED_INVALID);
+            }
+        }catch (UserResistrationException exception){
+            System.out.println(exception.type.toString());
+        }
     }
 }

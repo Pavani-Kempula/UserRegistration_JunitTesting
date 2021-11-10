@@ -14,19 +14,18 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class ValidateEmailIdTest {
     private UserRegistration userRegistration;
-    private boolean expectedResult;
     private String emailId;
+    private boolean expectedResult;
 
     public ValidateEmailIdTest(String emailId, boolean expectedResult) {
         super();
-        this.expectedResult = expectedResult;
         this.emailId = emailId;
+        this.expectedResult = expectedResult;
     }
     @Before
     public void initialize(){
         userRegistration= new UserRegistration();
     }
-
     @Parameterized.Parameters
     public static Collection emailIds_With_ExpectedResult(){
         return Arrays.asList(new Object[][]{
@@ -55,12 +54,8 @@ public class ValidateEmailIdTest {
         });
     }
     @Test
-    public void givenEmailIds_WhenProper_ShouldReturnExpectedResult() {
-        try {
-            boolean result = userRegistration.validateEmailId(emailId);
-            Assert.assertEquals(this.expectedResult, userRegistration.validateEmailId(emailId));
-        } catch (UserResistrationException exception) {
-            exception.printStackTrace();
-        }
+    public void givenEmailIds_WhenProper_ShouldReturnExpectedResult()  {
+        boolean output = userRegistration.validateEmailId(emailId);
+        Assert.assertEquals(this.expectedResult, output);
     }
 }
